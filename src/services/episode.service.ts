@@ -1,8 +1,10 @@
-import path from "path";
+import path, { dirname } from "path";
 import fs from "fs";
 import { Response } from "express";
 import { EpisodeRepository } from "../repositories/episode.repository.js";
 import { SetWatchTimeDTO } from "src/dtos/episode.dto.js";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export class EpisodeService {
   private episodeRepository = new EpisodeRepository();

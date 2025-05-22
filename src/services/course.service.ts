@@ -1,5 +1,3 @@
-// src/services/course.service.ts
-
 import { CourseRepository } from "../repositories/course.repository.js";
 
 export class CourseService {

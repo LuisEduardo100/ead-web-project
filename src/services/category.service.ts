@@ -1,5 +1,3 @@
-// src/services/categoryService.ts
-
 import { CategoryDTO, PaginatedCategoriesDTO } from "src/dtos/category.dto.js";
 import { CategoryRepository } from "src/repositories/category.repository.js";
 

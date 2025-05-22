@@ -1,10 +1,7 @@
-// Update the path below if your database file is located elsewhere
 import { database } from "../database/index.js";
 import { DataTypes, Model, Optional } from "sequelize";
 import bcrypt from "bcrypt";
 import { EpisodeInstance } from "./Episode.js";
-
-// type CheckPasswordCallback = (err: Error | undefined, isSame: boolean) => void
 
 export interface UserAttributes {
   id: number;
@@ -78,18 +75,6 @@ export const User = database.define<UserInstance, UserAttributes>(
     },
   }
 );
-
-// //@ts-ignore
-// User.prototype.checkPassword = function(password: string, callbackfn: CheckPasswordCallback) {
-//   //@ts-ignore
-//   bcrypt.compare(password, this.password, (err, isSame) => {
-//     if (err) {
-//       callbackfn(err, false)
-//     } else {
-//       callbackfn(err, isSame)
-//     }
-//   })
-// }
 
 export function checkPassword(
   password: string,
