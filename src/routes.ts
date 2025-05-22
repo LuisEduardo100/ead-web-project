@@ -7,11 +7,17 @@ import {
 import { UserController } from "./controllers/user.controller.js";
 import { EpisodesController } from "./controllers/episodes.controller.js";
 import { CategoriesController } from "./controllers/categories.controller.js";
+import { CourseController } from "./controllers/course.controller.js";
+import { LikeController } from "./controllers/like.controller.js";
+import { FavoriteController } from "./controllers/favorite.controller.js";
 
 const episodesController = new EpisodesController();
 const authController = new AuthController();
 const userController = new UserController();
 const categoriesController = new CategoriesController();
+const coursesController = new CourseController();
+const likeController = new LikeController();
+const favoriteControler = new FavoriteController();
 const router = express.Router();
 
 /*
@@ -38,6 +44,65 @@ router.get("/categories", ensureAuth, (req, res) => {
 router.get("/categories/:id", ensureAuth, (req, res) => {
   categoriesController.show(req, res);
 });
+/*
+ROTA DE CURSOS
+- GET /courses
+- GET /courses/:id
+- GET /courses/featured
+- GET /courses/popular
+- GET /courses/search
+*/
+//@ts-ignore
+router.get("/courses/featured", ensureAuth, (req, res) => {
+  coursesController.featured(req, res);
+});
+//@ts-ignore
+router.get("/courses/newest", (req, res) => {
+  coursesController.newest(req, res);
+});
+//@ts-ignore
+router.get("/courses/popular", ensureAuth, (req, res) => {
+  coursesController.popular(req, res);
+});
+//@ts-ignore
+router.get("/courses/search", ensureAuth, (req, res) => {
+  coursesController.search(req, res);
+});
+//@ts-ignore
+router.get("/courses/:id", ensureAuth, (req, res) => {
+  coursesController.show(req, res);
+});
+/* 
+ROTA DE LIKES
+- POST /likes
+- DELETE /likes
+*/
+//@ts-ignore
+router.post("/likes", ensureAuth, (req, res) => {
+  likeController.save(req, res);
+});
+//@ts-ignore
+router.delete("/likes", ensureAuth, (req, res) => {
+  likeController.delete(req, res);
+});
+/* 
+ROTA DE FAVORITOS
+- GET /favorites
+- POST /favorites
+- DELETE /favorites
+*/
+//@ts-ignore
+router.get("/favorites", ensureAuth, (req, res) => {
+  favoriteControler.index(req, res);
+});
+//@ts-ignore
+router.post("/favorites", ensureAuth, (req, res) => {
+  favoriteControler.save(req, res);
+});
+//@ts-ignore
+router.delete("/favorites", ensureAuth, (req, res) => {
+  favoriteControler.delete(req, res);
+});
 /* 
 ROTAS DE USUÁRIOS
 - GET /users/current
@@ -61,7 +126,6 @@ router.put("/users/current", ensureAuth, (req, res) => {
 router.put("/users/current/password", ensureAuth, (req, res) => {
   userController.updatePassword(req, res);
 });
-
 /* 
 ROTAS DE EPISÓDIOS
 - GET /episodes/stream
