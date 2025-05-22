@@ -53,7 +53,7 @@ ROTA DE CURSOS
 - GET /courses/search
 */
 //@ts-ignore
-router.get("/courses/featured", ensureAuth, (req, res) => {
+router.get("/courses/featured", (req, res) => {
   coursesController.featured(req, res);
 });
 //@ts-ignore
