@@ -4,9 +4,9 @@ import { Response } from "express";
 import { EpisodeRepository } from "../repositories/episode.repository.js";
 import { SetWatchTimeDTO } from "src/dtos/episode.dto.js";
 
-const episodeRepository = new EpisodeRepository();
-
 export class EpisodeService {
+  private episodeRepository = new EpisodeRepository();
+
   streamEpisodeToResponse(
     res: Response,
     videoUrl: string,
@@ -43,10 +43,14 @@ export class EpisodeService {
   }
 
   async getWatchTime(userId: number, episodeId: number) {
-    return await episodeRepository.findWatchTime(userId, episodeId);
+    return await this.episodeRepository.findWatchTime(userId, episodeId);
   }
 
   async setWatchTime({ userId, episodeId, seconds }: SetWatchTimeDTO) {
-    return await episodeRepository.saveWatchTime(userId, episodeId, seconds);
+    return await this.episodeRepository.saveWatchTime(
+      userId,
+      episodeId,
+      seconds
+    );
   }
 }

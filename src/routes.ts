@@ -3,14 +3,15 @@ import { AuthController } from "./controllers/auth.controller.js";
 import {
   ensureAuth,
   ensureAuthViaQuery,
-  RequestWithUser,
 } from "./middlewares/auth.middleware.js";
 import { UserController } from "./controllers/user.controller.js";
 import { EpisodesController } from "./controllers/episodes.controller.js";
+import { CategoriesController } from "./controllers/categories.controller.js";
 
 const episodesController = new EpisodesController();
 const authController = new AuthController();
 const userController = new UserController();
+const categoriesController = new CategoriesController();
 const router = express.Router();
 
 /*
@@ -23,6 +24,19 @@ router.post("/auth/register", (req, res) => {
 });
 router.post("/auth/login", (req, res) => {
   authController.login(req, res);
+});
+/*
+ROTA DE CATEGORIAS
+- GET /categories
+- GET /categories/:id
+*/
+//@ts-ignore
+router.get("/categories", ensureAuth, (req, res) => {
+  categoriesController.index(req, res);
+});
+//@ts-ignore
+router.get("/categories/:id", ensureAuth, (req, res) => {
+  categoriesController.show(req, res);
 });
 /* 
 ROTAS DE USUÁRIOS

@@ -4,11 +4,11 @@ import { filterLastEpisodeFromEachCourse } from "src/utils/episodeUtils.js";
 import bcrypt from "bcrypt";
 import { UpdatePasswordDTO } from "src/dtos/user.dto.js";
 
-const userRepository = new UserRepository();
-
 export class UserService {
+  private userRepository = new UserRepository();
+
   async getKeepWatchingList(userId: number): Promise<EpisodeInstance[]> {
-    const user = await userRepository.getKeepWatchingEpisodes(userId);
+    const user = await this.userRepository.getKeepWatchingEpisodes(userId);
 
     if (!user || !user.episodes) {
       throw new Error("Usuário ou episódios não encontrados");
@@ -25,15 +25,15 @@ export class UserService {
   }
 
   async getUserById(userId: number) {
-    return await userRepository.findById(userId);
+    return await this.userRepository.findById(userId);
   }
 
   async updateUser(userId: number, data: any) {
-    return await userRepository.updateUser(userId, data);
+    return await this.userRepository.updateUser(userId, data);
   }
 
   async updateUserPassword(userId: number, dto: UpdatePasswordDTO) {
-    const user = await userRepository.findById(userId);
+    const user = await this.userRepository.findById(userId);
     if (!user) {
       throw new Error("Usuário não encontrado");
     }
@@ -46,7 +46,7 @@ export class UserService {
       return false;
     }
 
-    return await userRepository.updateUser(userId, {
+    return await this.userRepository.updateUser(userId, {
       password: dto.newPassword,
     });
   }
