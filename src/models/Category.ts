@@ -14,7 +14,7 @@ export interface CategoryInstance
     Category {}
 
 export const Category = database.define<CategoryInstance, Category>(
-  "Category",
+  "categories",
   {
     id: {
       allowNull: false,

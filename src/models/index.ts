@@ -12,17 +12,27 @@ Course.belongsTo(Category);
 Course.hasMany(Episode);
 Course.belongsToMany(User, { through: Favorite });
 Course.belongsToMany(User, { through: Like });
-Course.hasMany(Favorite, { as: "favoritesUsers", foreignKey: "course_id" });
+Course.hasMany(Favorite, { as: "favoritesUsers", foreignKey: "courseId" });
 
 Episode.belongsTo(Course);
-Episode.belongsToMany(User, { through: WatchTime });
+Episode.belongsToMany(User, {
+  through: WatchTime,
+  as: "users",
+  foreignKey: "episodeId",
+  otherKey: "userId",
+});
 
 Favorite.belongsTo(Course);
 Favorite.belongsTo(User);
 
 User.belongsToMany(Course, { through: Favorite });
 User.belongsToMany(Course, { through: Like });
-User.belongsToMany(Episode, { through: WatchTime });
-User.hasMany(Favorite, { as: "favoritesCourses", foreignKey: "user_id" });
+User.belongsToMany(Episode, {
+  through: WatchTime,
+  foreignKey: "userId",
+  otherKey: "episodeId",
+  as: "episodes",
+});
+User.hasMany(Favorite, { as: "favoritesCourses", foreignKey: "userId" });
 
 export { Category, Course, Episode, Favorite, Like, User, WatchTime };

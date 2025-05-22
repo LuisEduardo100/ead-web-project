@@ -14,7 +14,7 @@ export interface FavoriteInstance extends Model<Favorite>, Favorite {
 }
 
 export const Favorite = database.define<FavoriteInstance, Favorite>(
-  "Favorite",
+  "favorites",
   {
     userId: {
       allowNull: false,

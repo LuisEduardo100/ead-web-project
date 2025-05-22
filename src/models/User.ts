@@ -23,8 +23,7 @@ export interface UserCreationAttributes
 export interface UserInstance
   extends Model<UserAttributes, UserCreationAttributes>,
     UserAttributes {
-  // checkPassword: (password: string, callbackfn: CheckPasswordCallback) => void,
-  Episodes?: EpisodeInstance[];
+  episodes?: EpisodeInstance[];
 }
 
 export const User = database.define<UserInstance, UserAttributes>(
@@ -62,7 +61,7 @@ export const User = database.define<UserInstance, UserAttributes>(
     },
     password: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     role: {
       allowNull: false,

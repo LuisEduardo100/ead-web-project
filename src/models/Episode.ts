@@ -23,7 +23,7 @@ export interface EpisodeInstance
   watchTime?: WatchTimeInstance;
 }
 
-export const Episode = database.define<EpisodeInstance, Episode>("Episode", {
+export const Episode = database.define<EpisodeInstance, Episode>("episodes", {
   id: {
     allowNull: false,
     autoIncrement: true,

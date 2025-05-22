@@ -8,7 +8,7 @@ export interface Like {
 
 export interface LikeInstance extends Model<Like>, Like {}
 
-export const Like = database.define<LikeInstance, Like>("Like", {
+export const Like = database.define<LikeInstance, Like>("likes", {
   userId: {
     allowNull: false,
     primaryKey: true,

@@ -19,7 +19,6 @@ const userResourceOptions: ResourceOptions = {
   editProperties: [
     "firstName",
     "lastName",
-    "serie",
     "phone",
     "birth",
     "email",
@@ -29,7 +28,6 @@ const userResourceOptions: ResourceOptions = {
   filterProperties: [
     "firstName",
     "lastName",
-    "serie",
     "phone",
     "birth",
     "email",
@@ -37,12 +35,11 @@ const userResourceOptions: ResourceOptions = {
     "createdAt",
     "updatedAt",
   ],
-  listProperties: ["id", "serie", "firstName", "email", "role"],
+  listProperties: ["id", "firstName", "email", "role"],
   showProperties: [
     "id",
     "firstName",
     "lastName",
-    "serie",
     "phone",
     "birth",
     "email",

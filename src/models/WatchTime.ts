@@ -5,6 +5,8 @@ export interface WatchTimeAttributes {
   seconds: number;
   userId: number;
   episodeId: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface WatchTimeInstance
@@ -14,7 +16,7 @@ export interface WatchTimeInstance
 export const WatchTime = database.define<
   WatchTimeInstance,
   WatchTimeAttributes
->("WatchTime", {
+>("watch_times", {
   seconds: {
     allowNull: false,
     type: DataTypes.INTEGER,
