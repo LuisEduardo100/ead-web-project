@@ -3,9 +3,8 @@ import { UpdatePasswordDTO } from "src/dtos/user.dto.js";
 import { RequestWithUser } from "src/middlewares/auth.middleware.js";
 import { UserService } from "src/services/user.service.js";
 
-const userService = new UserService();
-
 export class UserController {
+  private userService = new UserService();
   async getKeepWatchingList(req: RequestWithUser, res: Response) {
     const userId = req.user?.id;
 
@@ -14,7 +13,7 @@ export class UserController {
     }
 
     try {
-      const list = await userService.getKeepWatchingList(userId);
+      const list = await this.userService.getKeepWatchingList(userId);
       return res.json(list);
     } catch (error: any) {
       return res.status(404).json({ message: error.message });
@@ -26,7 +25,7 @@ export class UserController {
       return res.status(400).json({ message: "Usuário não autenticado" });
 
     try {
-      const user = await userService.getUserById(userId);
+      const user = await this.userService.getUserById(userId);
       return res.json(user);
     } catch (error: any) {
       return res.status(500).json({ message: error.message });
@@ -39,7 +38,7 @@ export class UserController {
       return res.status(400).json({ message: "Usuário não autenticado" });
 
     try {
-      const updated = await userService.updateUser(userId, req.body);
+      const updated = await this.userService.updateUser(userId, req.body);
       return res.json(updated);
     } catch (error: any) {
       return res.status(500).json({ message: error.message });
@@ -57,7 +56,7 @@ export class UserController {
     }
 
     try {
-      const updated = await userService.updateUserPassword(user.id, {
+      const updated = await this.userService.updateUserPassword(user.id, {
         currentPassword,
         newPassword,
       });
