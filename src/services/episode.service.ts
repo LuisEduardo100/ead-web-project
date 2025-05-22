@@ -15,6 +15,11 @@ export class EpisodeService {
     range: string | undefined
   ) {
     const filePath = path.join(__dirname, "../../uploads", videoUrl);
+
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ message: "Vídeo não encontrado" });
+    }
+
     const fileStat = fs.statSync(filePath);
 
     if (range) {
