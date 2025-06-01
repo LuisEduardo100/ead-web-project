@@ -5,15 +5,18 @@ export class FavoriteService {
   private favoriteRepository = new FavoriteRepository();
 
   async isFavorited({ courseId, userId }: FavoriteDTO) {
-    return await this.favoriteRepository.isFavorited(courseId, userId);
+    return await this.favoriteRepository.isFavorited({ courseId, userId });
   }
 
-  async findByUserId({ userId }: FavoriteDTO) {
+  async findByUserId(userId: number) {
     return await this.favoriteRepository.findByUserId(userId);
   }
 
   async create({ courseId, userId }: FavoriteDTO) {
-    const existing = await this.favoriteRepository.findOne(userId, courseId);
+    const existing = await this.favoriteRepository.findOne({
+      userId,
+      courseId,
+    });
 
     if (existing) {
       throw new Error("Curso já existente na lista");
@@ -23,6 +26,6 @@ export class FavoriteService {
   }
 
   async delete({ courseId, userId }: FavoriteDTO) {
-    return await this.favoriteRepository.delete(userId, courseId);
+    return await this.favoriteRepository.delete({ userId, courseId });
   }
 }

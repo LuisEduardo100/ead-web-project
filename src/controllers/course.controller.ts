@@ -22,13 +22,29 @@ export class CourseController {
         return res.status(404).json({ message: "Curso não encontrado" });
       }
 
-      const liked = await this.likeService.isLiked(course.id, userId);
-      const favorited = await this.favoriteService.isFavorited(
-        course.id,
-        userId
-      );
+      const params = {
+        courseId: course.id,
+        userId,
+      };
+      const liked = await this.likeService.isLiked(params);
+      const favorited = await this.favoriteService.isFavorited(params);
 
       return res.json({ ...course.get(), liked, favorited });
+    } catch (err) {
+      return res.status(400).json({ message: (err as Error).message });
+    }
+  }
+
+  async showNoAuth(req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+      const course = await this.courseService.findByIdWithEpisodes(id);
+      if (!course) {
+        return res.status(404).json({ message: "Curso não encontrado" });
+      }
+
+      return res.json({ ...course.get() });
     } catch (err) {
       return res.status(400).json({ message: (err as Error).message });
     }

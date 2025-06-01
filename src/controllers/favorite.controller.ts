@@ -3,6 +3,7 @@
 import { Response } from "express";
 import { FavoriteService } from "../services/favorite.service.js";
 import { RequestWithUser } from "src/middlewares/auth.middleware.js";
+import { FavoriteDTO } from "src/dtos/favorite.dto.js";
 
 export class FavoriteController {
   private favoriteService = new FavoriteService();
@@ -23,7 +24,7 @@ export class FavoriteController {
     const { courseId } = req.body;
 
     try {
-      const favorite = await this.favoriteService.create(userId, courseId);
+      const favorite = await this.favoriteService.create({ userId, courseId });
       return res.status(201).json(favorite);
     } catch (err) {
       return res.status(400).json({ message: (err as Error).message });
@@ -35,7 +36,7 @@ export class FavoriteController {
     const { courseId } = req.body;
 
     try {
-      await this.favoriteService.delete(userId, courseId);
+      await this.favoriteService.delete({ userId, courseId });
       return res.status(204).send();
     } catch (err) {
       return res.status(400).json({ message: (err as Error).message });

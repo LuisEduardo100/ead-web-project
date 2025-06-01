@@ -2,8 +2,9 @@ import path, { dirname } from "path";
 import fs from "fs";
 import { Response } from "express";
 import { EpisodeRepository } from "../repositories/episode.repository.js";
-import { SetWatchTimeDTO } from "src/dtos/episode.dto.js";
+import { GetWatchTimeDTO, SetWatchTimeDTO } from "src/dtos/episode.dto.js";
 import { fileURLToPath } from "url";
+import { WatchTime } from "src/models/WatchTime.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export class EpisodeService {
@@ -49,15 +50,21 @@ export class EpisodeService {
     }
   }
 
-  async getWatchTime(userId: number, episodeId: number) {
-    return await this.episodeRepository.findWatchTime(userId, episodeId);
+  async getWatchTime({ userId, episodeId }: GetWatchTimeDTO) {
+    const params: WatchTime = {
+      userId,
+      episodeId,
+      seconds: 0,
+    };
+    return await this.episodeRepository.findWatchTime(params);
   }
 
   async setWatchTime({ userId, episodeId, seconds }: SetWatchTimeDTO) {
-    return await this.episodeRepository.saveWatchTime(
+    const params: WatchTime = {
       userId,
       episodeId,
-      seconds
-    );
+      seconds,
+    };
+    return await this.episodeRepository.saveWatchTime(params);
   }
 }

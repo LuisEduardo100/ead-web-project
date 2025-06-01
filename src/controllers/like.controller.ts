@@ -10,7 +10,7 @@ export class LikeController {
     const { courseId } = req.body;
 
     try {
-      const like = await this.likeService.create(userId, courseId);
+      const like = await this.likeService.create({ userId, courseId });
       return res.status(201).json(like);
     } catch (err) {
       return res.status(400).json({ message: (err as Error).message });
@@ -22,7 +22,7 @@ export class LikeController {
     const { courseId } = req.body;
 
     try {
-      await this.likeService.delete(userId, courseId);
+      await this.likeService.delete({ userId, courseId });
       return res.status(204).send();
     } catch (err) {
       return res.status(400).json({ message: (err as Error).message });

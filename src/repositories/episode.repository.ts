@@ -1,14 +1,14 @@
 import { WatchTime } from "src/models/WatchTime.js";
 
 export class EpisodeRepository {
-  async findWatchTime(userId: number, episodeId: number) {
+  async findWatchTime({ userId, episodeId }: WatchTime) {
     return await WatchTime.findOne({
       attributes: ["seconds"],
       where: { userId, episodeId },
     });
   }
 
-  async saveWatchTime(userId: number, episodeId: number, seconds: number) {
+  async saveWatchTime({ userId, episodeId, seconds }: WatchTime) {
     const watchTime = await WatchTime.findOne({ where: { userId, episodeId } });
 
     if (watchTime) {

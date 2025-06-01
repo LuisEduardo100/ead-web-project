@@ -2,19 +2,19 @@ import { Favorite } from "../models/Favorite.js";
 import { FavoriteDTO } from "../dtos/favorite.dto.js";
 
 export class FavoriteRepository {
-  async findOne(userId: number, courseId: number) {
+  async findOne({ userId, courseId }: Favorite) {
     return await Favorite.findOne({ where: { userId, courseId } });
   }
 
-  async create(data: FavoriteDTO) {
+  async create(data: Favorite) {
     return await Favorite.create(data);
   }
 
-  async delete(userId: number, courseId: number) {
+  async delete({ userId, courseId }: Favorite) {
     return await Favorite.destroy({ where: { userId, courseId } });
   }
 
-  async isFavorited(courseId: number, userId: number) {
+  async isFavorited({ userId, courseId }: Favorite) {
     const favorite = await Favorite.findOne({ where: { courseId, userId } });
     return !!favorite;
   }

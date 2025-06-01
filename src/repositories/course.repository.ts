@@ -1,8 +1,8 @@
 import { Op, Sequelize } from "sequelize";
-import { Course } from "../models/Course.js";
+import { Course, CourseInstance } from "../models/Course.js";
 
 export class CourseRepository {
-  async findByIdWithEpisodes(id: string) {
+  async findByIdWithEpisodes(id: string): Promise<CourseInstance | null> {
     return await Course.findByPk(id, {
       attributes: ["id", "name", "synopsis", ["thumbnail_url", "thumbnailUrl"]],
       include: {
@@ -21,15 +21,15 @@ export class CourseRepository {
     });
   }
 
-  async findAllFeatured() {
+  async findAllFeatured(): Promise<CourseInstance[] | null> {
     return await Course.findAll({
       attributes: ["id", "name", "synopsis", ["thumbnail_url", "thumbnailUrl"]],
       where: { featured: true },
     });
   }
 
-  async findTopTenByLikes() {
-    const [results] = await Course.sequelize!.query(
+  async findTopTenByLikes(): Promise<CourseInstance[] | null> {
+    const [results]: any = await Course.sequelize!.query(
       `SELECT
         courses.id,
         courses.name,
@@ -46,7 +46,7 @@ export class CourseRepository {
     return results;
   }
 
-  async findTopTenNewest() {
+  async findTopTenNewest(): Promise<CourseInstance[] | null> {
     return await Course.findAll({
       limit: 10,
       order: [["created_at", "DESC"]],

@@ -2,7 +2,7 @@ import { Like } from "../models/Like.js";
 import { LikeDTO } from "../dtos/like.dto.js";
 
 export class LikeRepository {
-  async findOne(userId: number, courseId: number) {
+  async findOne({ userId, courseId }: Like) {
     return await Like.findOne({ where: { userId, courseId } });
   }
 
@@ -10,11 +10,11 @@ export class LikeRepository {
     return await Like.create(data);
   }
 
-  async delete(userId: number, courseId: number) {
+  async delete({ userId, courseId }: Like) {
     return await Like.destroy({ where: { userId, courseId } });
   }
 
-  async isLiked(courseId: number, userId: number) {
+  async isLiked({ userId, courseId }: Like) {
     const like = await Like.findOne({ where: { courseId, userId } });
     return !!like;
   }

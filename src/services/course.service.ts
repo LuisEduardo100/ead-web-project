@@ -9,7 +9,7 @@ export class CourseService {
 
   async getRandomFeaturedCourses() {
     const featured = await this.courseRepository.findAllFeatured();
-    return featured.sort(() => 0.5 - Math.random()).slice(0, 3);
+    return featured?.sort(() => 0.5 - Math.random()).slice(0, 3);
   }
 
   async getTopTenByLikes() {

@@ -25,10 +25,10 @@ export class EpisodesController {
     const userId = req.user!.id;
 
     try {
-      const watchTime = await this.episodeService.getWatchTime(
+      const watchTime = await this.episodeService.getWatchTime({
         userId,
-        episodeId
-      );
+        episodeId,
+      });
       return res.json(watchTime);
     } catch (err) {
       return res.status(400).json({ message: (err as Error).message });

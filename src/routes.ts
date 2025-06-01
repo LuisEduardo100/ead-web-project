@@ -69,7 +69,11 @@ router.get("/courses/search", ensureAuth, (req, res) => {
   coursesController.search(req, res);
 });
 //@ts-ignore
-router.get("/courses/:id", (req, res) => {
+router.get("/course/:id", (req, res) => {
+  coursesController.showNoAuth(req, res);
+});
+//@ts-ignore
+router.get("/courses/:id", ensureAuth, (req, res) => {
   coursesController.show(req, res);
 });
 /* 
