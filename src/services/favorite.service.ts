@@ -1,17 +1,18 @@
+import { FavoriteDTO } from "src/dtos/favorite.dto.js";
 import { FavoriteRepository } from "../repositories/favorite.repository.js";
 
 export class FavoriteService {
   private favoriteRepository = new FavoriteRepository();
 
-  async isFavorited(courseId: number, userId: number) {
+  async isFavorited({ courseId, userId }: FavoriteDTO) {
     return await this.favoriteRepository.isFavorited(courseId, userId);
   }
 
-  async findByUserId(userId: number) {
+  async findByUserId({ userId }: FavoriteDTO) {
     return await this.favoriteRepository.findByUserId(userId);
   }
 
-  async create(userId: number, courseId: number) {
+  async create({ courseId, userId }: FavoriteDTO) {
     const existing = await this.favoriteRepository.findOne(userId, courseId);
 
     if (existing) {
@@ -21,7 +22,7 @@ export class FavoriteService {
     return await this.favoriteRepository.create({ userId, courseId });
   }
 
-  async delete(userId: number, courseId: number) {
+  async delete({ courseId, userId }: FavoriteDTO) {
     return await this.favoriteRepository.delete(userId, courseId);
   }
 }

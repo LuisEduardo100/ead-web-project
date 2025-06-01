@@ -3,7 +3,7 @@ import { LikeRepository } from "../repositories/like.repository.js";
 export class LikeService {
   private likeRepository = new LikeRepository();
 
-  async create(userId: number, courseId: number) {
+  async create({ userId, courseId }: LikeDTO) {
     const existing = await this.likeRepository.findOne(userId, courseId);
 
     if (existing) {
@@ -13,11 +13,11 @@ export class LikeService {
     return await this.likeRepository.create({ userId, courseId });
   }
 
-  async delete(userId: number, courseId: number) {
+  async delete({ userId, courseId }: LikeDTO) {
     return await this.likeRepository.delete(userId, courseId);
   }
 
-  async isLiked(courseId: number, userId: number) {
+  async isLiked({ userId, courseId }: LikeDTO) {
     return await this.likeRepository.isLiked(courseId, userId);
   }
 }
