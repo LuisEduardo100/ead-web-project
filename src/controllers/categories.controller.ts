@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { CategoryService } from "src/services/category.service.js";
-import { getPaginationParams } from "src/utils/paginationUtils.js";
+import { CategoryService } from "../services/category.service.js";
+import { getPaginationParams } from "../utils/paginationUtils.js";
 
 export class CategoriesController {
   private categoryService = new CategoryService();

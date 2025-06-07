@@ -1,8 +1,8 @@
-import { EpisodeInstance } from "src/models/Episode.js";
-import { UserRepository } from "src/repositories/user.repository.js";
-import { filterLastEpisodeFromEachCourse } from "src/utils/episodeUtils.js";
+import { EpisodeInstance } from "../models/Episode.js";
+import { UserRepository } from "../repositories/user.repository.js";
+import { filterLastEpisodeFromEachCourse } from "../utils/episodeUtils.js";
 import bcrypt from "bcrypt";
-import { UpdatePasswordDTO } from "src/dtos/user.dto.js";
+import { UpdatePasswordDTO } from "../dtos/user.dto.js";
 
 export class UserService {
   private userRepository = new UserRepository();

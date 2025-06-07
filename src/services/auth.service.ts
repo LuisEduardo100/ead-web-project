@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import { AuthPayload, LoginDTO, RegisterDTO } from "src/dtos/auth.dto.js";
-import { UserRepository } from "src/repositories/user.repository.js";
+import { AuthPayload, LoginDTO, RegisterDTO } from "../dtos/auth.dto.js";
+import { UserRepository } from "../repositories/user.repository.js";
 import { jwtService } from "./jwt.service.js";
 
 export class AuthService {

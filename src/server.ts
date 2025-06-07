@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import "./models";
+import "./models/index.js";
 import express from "express";
 import cors from "cors";
 import formidable from "express-formidable";
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     req.method === "POST"
   ) {
     formidable({
-      maxFileSize: 1024 * 1024 * 1024, // 1 GB
+      maxFileSize: 1024 * 1024 * 1024,
     })(req, res, next);
   } else {
     next();

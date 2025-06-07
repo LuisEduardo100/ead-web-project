@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { RequestWithUser } from "src/middlewares/auth.middleware.js";
-import { EpisodeService } from "src/services/episode.service.js";
+import { RequestWithUser } from "../middlewares/auth.middleware.js";
+import { EpisodeService } from "../services/episode.service.js";
 
 export class EpisodesController {
   private episodeService = new EpisodeService();

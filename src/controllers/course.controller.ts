@@ -3,9 +3,9 @@
 import { Request, Response } from "express";
 import { CourseService } from "../services/course.service.js";
 import { getPaginationParams } from "../utils/paginationUtils.js";
-import { RequestWithUser } from "src/middlewares/auth.middleware.js";
-import { LikeService } from "src/services/like.service.js";
-import { FavoriteService } from "src/services/favorite.service.js";
+import { RequestWithUser } from "../middlewares/auth.middleware.js";
+import { LikeService } from "../services/like.service.js";
+import { FavoriteService } from "../services/favorite.service.js";
 
 export class CourseController {
   private courseService = new CourseService();

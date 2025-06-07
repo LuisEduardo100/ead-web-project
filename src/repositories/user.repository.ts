@@ -1,6 +1,6 @@
-import { Course } from "src/models/Course.js";
-import { Episode } from "src/models/Episode.js";
-import { User, UserCreationAttributes, UserInstance } from "src/models/User.js";
+import { Course } from "../models/Course.js";
+import { Episode } from "../models/Episode.js";
+import { User, UserCreationAttributes, UserInstance } from "../models/User.js";
 
 export class UserRepository {
   async findByEmail(email: string): Promise<UserInstance | null> {

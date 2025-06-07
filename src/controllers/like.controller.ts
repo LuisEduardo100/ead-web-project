@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { LikeService } from "../services/like.service.js";
-import { RequestWithUser } from "src/middlewares/auth.middleware.js";
+import { RequestWithUser } from "../middlewares/auth.middleware.js";
 
 export class LikeController {
   private likeService = new LikeService();

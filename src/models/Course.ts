@@ -1,7 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { Category } from "./Category.js";
 import { database } from "../database/index.js";
-import { EpisodeCreationAttributes } from "./Episode.js";
 
 export interface Course {
   id: number;

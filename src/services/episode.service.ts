@@ -2,9 +2,9 @@ import path, { dirname } from "path";
 import fs from "fs";
 import { Response } from "express";
 import { EpisodeRepository } from "../repositories/episode.repository.js";
-import { GetWatchTimeDTO, SetWatchTimeDTO } from "src/dtos/episode.dto.js";
+import { GetWatchTimeDTO, SetWatchTimeDTO } from "../dtos/episode.dto.js";
 import { fileURLToPath } from "url";
-import { WatchTime } from "src/models/WatchTime.js";
+import { WatchTime } from "../models/WatchTime.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export class EpisodeService {

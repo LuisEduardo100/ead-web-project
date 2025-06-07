@@ -1,5 +1,5 @@
-import { CategoryDTO, PaginatedCategoriesDTO } from "src/dtos/category.dto.js";
-import { CategoryRepository } from "src/repositories/category.repository.js";
+import { CategoryDTO, PaginatedCategoriesDTO } from "../dtos/category.dto.js";
+import { CategoryRepository } from "../repositories/category.repository.js";
 
 export class CategoryService {
   private categoryRepository = new CategoryRepository();

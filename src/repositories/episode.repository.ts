@@ -1,4 +1,4 @@
-import { WatchTime } from "src/models/WatchTime.js";
+import { WatchTime } from "../models/WatchTime.js";
 
 export class EpisodeRepository {
   async findWatchTime({ userId, episodeId }: WatchTime) {

@@ -1,4 +1,4 @@
-import { FavoriteDTO } from "src/dtos/favorite.dto.js";
+import { FavoriteDTO } from "../dtos/favorite.dto.js";
 import { FavoriteRepository } from "../repositories/favorite.repository.js";
 
 export class FavoriteService {

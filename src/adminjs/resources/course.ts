@@ -1,10 +1,9 @@
-import { ResourceOptions, FeatureType, ComponentLoader } from "adminjs";
+import { ResourceOptions, FeatureType } from "adminjs";
 import uploadFileFeature from "@adminjs/upload";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { componentLoader } from "../componentLoader.js";
 
-// const componentLoader = new ComponentLoader();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, "../../../public");
 

@@ -1,4 +1,4 @@
-import { LikeDTO } from "src/dtos/like.dto.js";
+import { LikeDTO } from "../dtos/like.dto.js";
 import { LikeRepository } from "../repositories/like.repository.js";
 
 export class LikeService {

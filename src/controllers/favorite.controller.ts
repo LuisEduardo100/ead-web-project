@@ -2,8 +2,7 @@
 
 import { Response } from "express";
 import { FavoriteService } from "../services/favorite.service.js";
-import { RequestWithUser } from "src/middlewares/auth.middleware.js";
-import { FavoriteDTO } from "src/dtos/favorite.dto.js";
+import { RequestWithUser } from "../middlewares/auth.middleware.js";
 
 export class FavoriteController {
   private favoriteService = new FavoriteService();

@@ -1,4 +1,4 @@
-import { EpisodeInstance } from "src/models/Episode.js";
+import { EpisodeInstance } from "../models/Episode.js";
 
 export function filterLastEpisodeFromEachCourse(
   episodes: EpisodeInstance[]

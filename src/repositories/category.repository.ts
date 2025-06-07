@@ -1,4 +1,4 @@
-import { Category, CategoryInstance } from "src/models/Category.js";
+import { Category, CategoryInstance } from "../models/Category.js";
 
 export class CategoryRepository {
   async findAllPaginated(

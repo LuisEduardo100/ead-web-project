@@ -1,7 +1,7 @@
 import { Response } from "express";
-import { UpdatePasswordDTO } from "src/dtos/user.dto.js";
-import { RequestWithUser } from "src/middlewares/auth.middleware.js";
-import { UserService } from "src/services/user.service.js";
+import { UpdatePasswordDTO } from "../dtos/user.dto.js";
+import { RequestWithUser } from "../middlewares/auth.middleware.js";
+import { UserService } from "../services/user.service.js";
 
 export class UserController {
   private userService = new UserService();
