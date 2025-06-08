@@ -7,10 +7,10 @@
     "dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
     "build": "tsc",
-    "deploy-setup": "mkdir uploads public && npm install && npm run build && sequelize init && npm run migrate && npm run seed",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate --config dist/config/config.js --migrations-path dist/database/migrations && npx sequelize-cli db:seed:all --config dist/config/config.js --seeders-path dist/database/seeders",
     "migrate": "npx sequelize-cli db:migrate --config dist/config/config.js --migrations-path dist/database/migrations",
     "seed": "npx sequelize-cli db:seed:all --config dist/config/config.js --seeders-path dist/database/seeders",
-    "db:reset": "npx sequelize-cli db:drop && npx sequelize db:create && npx sequelize db:migrate --config dist/config/config.js --migrations-path dist/database/migrations && npx sequelize db:seed:all --config dist/config/config.js --seeders-path dist/database/seeders"
+    "deploy-setup": "mkdir -p uploads public && npm install && npm run build && npm run migrate && npm run seed"
   },
   "keywords": [],
   "author": "",
