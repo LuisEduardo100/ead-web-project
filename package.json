@@ -25,10 +25,11 @@
     "@types/express-session": "^1.18.1",
     "@types/jsonwebtoken": "^9.0.9",
     "adminjs": "^7.6.1",
-    "bcrypt": "^5.0.0",
+    "bcrypt": "~5.0.1",
     "body-parser": "^2.2.0",
     "connect-session-sequelize": "^7.1.7",
     "cors": "^2.8.5",
+    "express-formidable": "^1.2.0",
     "dotenv": "^16.5.0",
     "env-var": "^7.5.0",
     "express": "^5.1.0",
@@ -41,7 +42,7 @@
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
+    "@types/bcrypt": "~5.0.0",
     "@types/express": "^5.0.2",
     "@types/express-formidable": "^1.2.3",
     "@types/node": "^22.15.18",

@@ -81,11 +81,15 @@ export function checkPassword(
   userPassword: string,
   callbackfn: (err: Error | undefined, isSame: boolean) => void
 ) {
-  bcrypt.compare(password, userPassword, (err, isSame) => {
-    if (err) {
-      callbackfn(err, false);
-    } else {
-      callbackfn(err, isSame);
+  bcrypt.compare(
+    password,
+    userPassword,
+    (err: Error | undefined, isSame: boolean) => {
+      if (err) {
+        callbackfn(err, false);
+      } else {
+        callbackfn(undefined, isSame);
+      }
     }
-  });
+  );
 }
