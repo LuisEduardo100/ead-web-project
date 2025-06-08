@@ -10,7 +10,7 @@
  "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate --config dist/config/config.cjs --migrations-path dist/database/migrations && npx sequelize-cli db:seed:all --config dist/config/config.cjs --seeders-path dist/database/seeders",
     "migrate": "npx sequelize-cli db:migrate --config dist/config/config.cjs --migrations-path dist/database/migrations",
     "seed": "npx sequelize-cli db:seed:all --config dist/config/config.cjs --seeders-path dist/database/seeders",
-    "deploy-setup": "mkdir -p uploads public dist/config dist/database/migrations dist/database/seeders && npm install && npm run build && cp src/config/config.cjs dist/config/config.cjs && npm run migrate && npm run seed"
+    "deploy-setup": "mkdir -p uploads public dist/config dist/database/migrations dist/database/seeders && npm install && npm run build && cp src/config/config.cjs dist/config/config.cjs && cp src/database/migrations/*.cjs dist/database/migrations/ && cp src/database/seeders/*.cjs dist/database/seeders/ && npm run migrate && npm run seed"
   },
   "keywords": [],
   "author": "",
