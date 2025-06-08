@@ -7,6 +7,7 @@
     "dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
     "build": "tsc",
+    "deploy-setup": "mkdir -p uploads public && npm install && npm run build",
     "db:reset": "npx sequelize db:drop && sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
     "migrate": "sequelize-cli db:migrate --config src/config/config.js --migrations-path src/database/migrations",
     "seed": "sequelize-cli db:seed:all --config src/config/config.js --seeders-path src/database/seeders"
