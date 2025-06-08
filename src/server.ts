@@ -11,7 +11,16 @@ import router from "./routes.js";
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = process.env.FRONTEND_URL
+  ? [process.env.FRONTEND_URL]
+  : ["http://localhost:3000", "http://localhost:5173"]; // Inclua todas as portas locais que você usa no dev
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.static("public"));
 app.use((req, res, next) => {
   if (
