@@ -10,7 +10,6 @@ import { adminJs, adminJsRouter } from "./adminjs/index.js";
 import router from "./routes.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
@@ -23,17 +22,6 @@ app.use(
     origin: allowedOrigins,
     credentials: true,
   })
-);
-
-app.use("/admin", adminJsRouter);
-app.use(
-  "/admin/static",
-  express.static(path.join(__dirname, "../public/admin"))
-);
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
-app.use(
-  "/admin/assets",
-  express.static(path.join(__dirname, "../public/admin"))
 );
 
 app.use(express.static("public"));
