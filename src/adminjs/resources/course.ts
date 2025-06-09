@@ -3,6 +3,7 @@ import uploadFileFeature from "@adminjs/upload";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { componentLoader } from "../componentLoader.js";
+import { CustomLocalProvider } from "../../utils/customLocalProvider.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, "../../../public");
@@ -43,12 +44,10 @@ export const courseResourceOptions: ResourceOptions = {
 export const courseResourceFeatures: FeatureType[] = [
   uploadFileFeature({
     componentLoader,
-    provider: {
-      local: {
-        bucket: publicDir,
-        opts: { baseUrl: "public" },
-      },
-    },
+    provider: new CustomLocalProvider({
+      bucket: publicDir,
+      opts: { baseUrl: "public" },
+    }),
     properties: {
       key: "thumbnailUrl",
       file: "uploadThumbnail",
