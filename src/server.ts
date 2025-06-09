@@ -8,12 +8,15 @@ import formidable from "express-formidable";
 import { database } from "./database/index.js";
 import { adminJs, adminJsRouter } from "./adminjs/index.js";
 import router from "./routes.js";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
 const allowedOrigins = process.env.FRONTEND_URL
   ? [process.env.FRONTEND_URL]
-  : ["http://localhost:3000", "http://localhost:5173"]; // Inclua todas as portas locais que você usa no dev
+  : ["http://localhost:3000", "http://localhost:5173"];
 
 app.use(
   cors({
@@ -21,6 +24,18 @@ app.use(
     credentials: true,
   })
 );
+
+app.use("/admin", adminJsRouter);
+app.use(
+  "/admin/static",
+  express.static(path.join(__dirname, "../public/admin"))
+);
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+app.use(
+  "/admin/assets",
+  express.static(path.join(__dirname, "../public/admin"))
+);
+
 app.use(express.static("public"));
 app.use((req, res, next) => {
   if (

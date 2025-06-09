@@ -1,3 +1,5 @@
 import { ComponentLoader } from "adminjs";
 
-export const componentLoader = new ComponentLoader();
+const componentLoader = new ComponentLoader();
+
+export { componentLoader };

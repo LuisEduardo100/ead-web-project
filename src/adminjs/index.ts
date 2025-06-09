@@ -9,17 +9,23 @@ import { adminJsResources } from "./resources/index.js";
 import { database } from "../database/index.js";
 import { ADMINJS_COOKIE_PASSWORD } from "../config/environment.js";
 import { componentLoader } from "./componentLoader.js";
+import sequelize from "sequelize";
 
 const SequelizeStore = connectionSession(session.Store);
 const store = new SequelizeStore({ db: database });
 store.sync();
 
-AdminJS.registerAdapter(AdminJsSequelize);
+const isProduction = process.env.NODE_ENV === "production";
+// AdminJS.registerAdapter(AdminJsSequelize);
+AdminJS.registerAdapter({
+  Database: AdminJsSequelize.Database,
+  Resource: AdminJsSequelize.Resource,
+});
 
 export const adminJs = new AdminJS({
   databases: [database],
   rootPath: "/admin",
-  componentLoader,
+  componentLoader: componentLoader,
   resources: adminJsResources,
   branding: {
     companyName: "VoceNotaDez",
@@ -50,4 +56,8 @@ export const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(
   }
 );
 
-adminJs.watch();
+if (!isProduction) {
+  adminJs.watch();
+} else {
+  adminJs.initialize();
+}
